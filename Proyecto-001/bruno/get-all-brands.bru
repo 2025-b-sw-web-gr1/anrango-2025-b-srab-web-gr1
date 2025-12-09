@@ -1,0 +1,42 @@
+meta {
+  name: Get All Brands
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3000/brands
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener todas las marcas
+  
+  Este endpoint retorna una lista con todas las marcas registradas en el sistema.
+  
+  ## Respuesta esperada:
+  - Status: 200 OK
+  - Body: Array de objetos Brand
+  
+  ## Ejemplo de respuesta:
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Samsung",
+      "country": "Corea del Sur"
+    },
+    {
+      "id": 2,
+      "name": "Apple",
+      "country": "Estados Unidos"
+    },
+    {
+      "id": 3,
+      "name": "Xiaomi",
+      "country": "China"
+    }
+  ]
+  ```
+}

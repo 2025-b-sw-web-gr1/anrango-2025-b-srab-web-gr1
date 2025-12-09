@@ -1,0 +1,31 @@
+meta {
+  name: Delete Model
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://localhost:3000/models/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Eliminar un modelo
+  
+  Este endpoint permite eliminar un modelo del sistema.
+  
+  ## Parámetros:
+  - **id** (path): ID del modelo a eliminar
+  
+  ## Respuesta esperada:
+  - Status: 204 No Content
+  - Body: Vacío
+  
+  ## Posibles errores:
+  - 404 Not Found: Si el modelo no existe
+  
+  ## Nota:
+  Eliminar un modelo no afecta a la marca asociada.
+  Los modelos se pueden eliminar de forma independiente.
+}

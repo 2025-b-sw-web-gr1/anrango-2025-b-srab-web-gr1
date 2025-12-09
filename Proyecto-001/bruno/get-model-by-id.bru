@@ -1,0 +1,37 @@
+meta {
+  name: Get Model By ID
+  type: http
+  seq: 8
+}
+
+get {
+  url: http://localhost:3000/models/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener un modelo por ID
+  
+  Este endpoint retorna los datos de un modelo específico.
+  
+  ## Parámetros:
+  - **id** (path): ID del modelo a consultar
+  
+  ## Respuesta esperada:
+  - Status: 200 OK
+  - Body: Objeto Model
+  
+  ## Ejemplo de respuesta:
+  ```json
+  {
+    "id": 1,
+    "name": "Galaxy S23",
+    "year": 2023,
+    "brandId": 1
+  }
+  ```
+  
+  ## Posibles errores:
+  - 404 Not Found: Si el modelo no existe
+}

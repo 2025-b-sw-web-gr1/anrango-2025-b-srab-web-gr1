@@ -1,0 +1,33 @@
+meta {
+  name: Delete Brand
+  type: http
+  seq: 5
+}
+
+delete {
+  url: http://localhost:3000/brands/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Eliminar una marca
+  
+  Este endpoint permite eliminar una marca del sistema.
+  
+  ## Parámetros:
+  - **id** (path): ID de la marca a eliminar
+  
+  ## Respuesta esperada:
+  - Status: 204 No Content
+  - Body: Vacío
+  
+  ## Posibles errores:
+  - 404 Not Found: Si la marca no existe
+  - 409 Conflict: Si la marca tiene modelos asociados
+  
+  ## Nota importante:
+  Dependiendo de la implementación del servidor, puede que no sea posible
+  eliminar una marca que tenga modelos asociados. En ese caso, primero
+  deberás eliminar todos los modelos de esa marca.
+}

@@ -1,0 +1,55 @@
+meta {
+  name: Update Model
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://localhost:3000/models/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Galaxy S23 Ultra",
+    "year": 2023,
+    "brandId": 1
+  }
+}
+
+docs {
+  # Actualizar un modelo
+  
+  Este endpoint permite actualizar todos los campos de un modelo existente.
+  
+  ## Parámetros:
+  - **id** (path): ID del modelo a actualizar
+  
+  ## Campos requeridos en el body:
+  - **name**: Nuevo nombre del modelo (string)
+  - **year**: Nuevo año de lanzamiento (integer)
+  - **brandId**: Nuevo ID de la marca (integer, FK)
+  
+  ## Respuesta esperada:
+  - Status: 200 OK
+  - Body: Objeto Model actualizado
+  
+  ## Ejemplo de respuesta:
+  ```json
+  {
+    "id": 1,
+    "name": "Galaxy S23 Ultra",
+    "year": 2023,
+    "brandId": 1
+  }
+  ```
+  
+  ## Posibles errores:
+  - 400 Bad Request: Datos inválidos
+  - 404 Not Found: Si el modelo o la marca no existen
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Get Brand By ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/brands/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener una marca por ID
+  
+  Este endpoint retorna los datos de una marca específica.
+  
+  ## Parámetros:
+  - **id** (path): ID de la marca a consultar
+  
+  ## Respuesta esperada:
+  - Status: 200 OK
+  - Body: Objeto Brand
+  
+  ## Ejemplo de respuesta:
+  ```json
+  {
+    "id": 1,
+    "name": "Samsung",
+    "country": "Corea del Sur"
+  }
+  ```
+  
+  ## Posibles errores:
+  - 404 Not Found: Si la marca no existe
+}

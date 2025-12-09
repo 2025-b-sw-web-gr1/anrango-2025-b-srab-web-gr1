@@ -1,0 +1,45 @@
+meta {
+  name: Get All Models
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:3000/models
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener todos los modelos
+  
+  Este endpoint retorna una lista con todos los modelos de celulares registrados.
+  
+  ## Respuesta esperada:
+  - Status: 200 OK
+  - Body: Array de objetos Model
+  
+  ## Ejemplo de respuesta:
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Galaxy S23",
+      "year": 2023,
+      "brandId": 1
+    },
+    {
+      "id": 2,
+      "name": "iPhone 15 Pro",
+      "year": 2023,
+      "brandId": 2
+    },
+    {
+      "id": 3,
+      "name": "Redmi Note 12",
+      "year": 2023,
+      "brandId": 3
+    }
+  ]
+  ```
+}

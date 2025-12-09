@@ -1,0 +1,55 @@
+meta {
+  name: Create Model
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:3000/models
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Galaxy S23",
+    "year": 2023,
+    "brandId": 1
+  }
+}
+
+docs {
+  # Crear un nuevo modelo
+  
+  Este endpoint permite crear un nuevo modelo de celular asociado a una marca.
+  
+  ## Campos requeridos:
+  - **name**: Nombre del modelo (string)
+  - **year**: Año de lanzamiento (integer)
+  - **brandId**: ID de la marca a la que pertenece (integer, FK)
+  
+  ## Respuesta esperada:
+  - Status: 201 Created
+  - Body: Objeto Model con el ID generado
+  
+  ## Ejemplo de respuesta:
+  ```json
+  {
+    "id": 1,
+    "name": "Galaxy S23",
+    "year": 2023,
+    "brandId": 1
+  }
+  ```
+  
+  ## Posibles errores:
+  - 400 Bad Request: Datos inválidos
+  - 404 Not Found: Si la marca con el brandId especificado no existe
+  
+  ## Nota:
+  Antes de crear un modelo, asegúrate de que la marca (brandId) ya exista.
+}

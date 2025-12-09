@@ -1,0 +1,613 @@
+openapi: 3.0.3
+info:
+  title: API de Marcas y Modelos de Celulares
+  description: |
+    API REST para gestionar marcas y modelos de teléfonos celulares.
+    
+    **Relación 1 a Muchos:**
+    - Una Marca (Brand) puede tener muchos Modelos (Models)
+    - Un Modelo (Model) pertenece a una única Marca (Brand)
+    
+    Esta API permite realizar operaciones CRUD completas sobre ambas entidades
+    y consultar la relación entre ellas.
+
+    Desarrollado por:
+    - Stalin Anrango
+    - Paul Dávila
+  version: 1.0.0
+  contact:
+    name: Soporte API
+    email: soporte@api-celulares.com
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor de desarrollo local
+  - url: http://localhost:8080
+    description: Servidor de desarrollo alternativo
+
+tags:
+  - name: Brands
+    description: Operaciones sobre marcas de celulares
+  - name: Models
+    description: Operaciones sobre modelos de celulares
+
+paths:
+  /brands:
+    get:
+      tags:
+        - Brands
+      summary: Obtener todas las marcas
+      description: Retorna una lista con todas las marcas de celulares registradas
+      operationId: getAllBrands
+      responses:
+        '200':
+          description: Lista de marcas obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brand'
+              example:
+                - id: 1
+                  name: Samsung
+                  country: Corea del Sur
+                - id: 2
+                  name: Apple
+                  country: Estados Unidos
+                - id: 3
+                  name: Xiaomi
+                  country: China
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Brands
+      summary: Crear una nueva marca
+      description: Crea una nueva marca de celular en el sistema
+      operationId: createBrand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandInput'
+            example:
+              name: Samsung
+              country: Corea del Sur
+      responses:
+        '201':
+          description: Marca creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+              example:
+                id: 1
+                name: Samsung
+                country: Corea del Sur
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /brands/{id}:
+    get:
+      tags:
+        - Brands
+      summary: Obtener una marca por ID
+      description: Retorna los datos de una marca específica
+      operationId: getBrandById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la marca a consultar
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Marca encontrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+              example:
+                id: 1
+                name: Samsung
+                country: Corea del Sur
+        '404':
+          description: Marca no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Marca con ID 1 no encontrada
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Brands
+      summary: Actualizar una marca
+      description: Actualiza todos los campos de una marca existente
+      operationId: updateBrand
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la marca a actualizar
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandInput'
+            example:
+              name: Samsung Electronics
+              country: Corea del Sur
+      responses:
+        '200':
+          description: Marca actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+              example:
+                id: 1
+                name: Samsung Electronics
+                country: Corea del Sur
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Marca no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Brands
+      summary: Eliminar una marca
+      description: Elimina una marca del sistema
+      operationId: deleteBrand
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la marca a eliminar
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '204':
+          description: Marca eliminada exitosamente
+        '404':
+          description: Marca no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflicto - La marca tiene modelos asociados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: No se puede eliminar la marca porque tiene modelos asociados
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /brands/{id}/models:
+    get:
+      tags:
+        - Brands
+      summary: Obtener todos los modelos de una marca
+      description: Retorna todos los modelos de celulares asociados a una marca específica
+      operationId: getModelsByBrand
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la marca
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Lista de modelos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Model'
+              example:
+                - id: 1
+                  name: Galaxy S23
+                  year: 2023
+                  brandId: 1
+                - id: 2
+                  name: Galaxy A54
+                  year: 2023
+                  brandId: 1
+                - id: 3
+                  name: Galaxy Z Fold 5
+                  year: 2023
+                  brandId: 1
+        '404':
+          description: Marca no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /models:
+    get:
+      tags:
+        - Models
+      summary: Obtener todos los modelos
+      description: Retorna una lista con todos los modelos de celulares registrados
+      operationId: getAllModels
+      responses:
+        '200':
+          description: Lista de modelos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Model'
+              example:
+                - id: 1
+                  name: Galaxy S23
+                  year: 2023
+                  brandId: 1
+                - id: 2
+                  name: iPhone 15 Pro
+                  year: 2023
+                  brandId: 2
+                - id: 3
+                  name: Redmi Note 12
+                  year: 2023
+                  brandId: 3
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Models
+      summary: Crear un nuevo modelo
+      description: Crea un nuevo modelo de celular asociado a una marca
+      operationId: createModel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelInput'
+            example:
+              name: Galaxy S23
+              year: 2023
+              brandId: 1
+      responses:
+        '201':
+          description: Modelo creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+              example:
+                id: 1
+                name: Galaxy S23
+                year: 2023
+                brandId: 1
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: El campo brandId es requerido
+        '404':
+          description: Marca asociada no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: La marca con ID 1 no existe
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /models/{id}:
+    get:
+      tags:
+        - Models
+      summary: Obtener un modelo por ID
+      description: Retorna los datos de un modelo específico
+      operationId: getModelById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del modelo a consultar
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Modelo encontrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+              example:
+                id: 1
+                name: Galaxy S23
+                year: 2023
+                brandId: 1
+        '404':
+          description: Modelo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Modelo con ID 1 no encontrado
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Models
+      summary: Actualizar un modelo
+      description: Actualiza todos los campos de un modelo existente
+      operationId: updateModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del modelo a actualizar
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelInput'
+            example:
+              name: Galaxy S23 Ultra
+              year: 2023
+              brandId: 1
+      responses:
+        '200':
+          description: Modelo actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+              example:
+                id: 1
+                name: Galaxy S23 Ultra
+                year: 2023
+                brandId: 1
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Modelo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Models
+      summary: Eliminar un modelo
+      description: Elimina un modelo del sistema
+      operationId: deleteModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del modelo a eliminar
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '204':
+          description: Modelo eliminado exitosamente
+        '404':
+          description: Modelo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Brand:
+      type: object
+      required:
+        - id
+        - name
+        - country
+      properties:
+        id:
+          type: integer
+          description: Identificador único de la marca
+          example: 1
+        name:
+          type: string
+          description: Nombre de la marca
+          minLength: 1
+          maxLength: 100
+          example: Samsung
+        country:
+          type: string
+          description: País de origen de la marca
+          minLength: 1
+          maxLength: 100
+          example: Corea del Sur
+
+    BrandInput:
+      type: object
+      required:
+        - name
+        - country
+      properties:
+        name:
+          type: string
+          description: Nombre de la marca
+          minLength: 1
+          maxLength: 100
+          example: Samsung
+        country:
+          type: string
+          description: País de origen de la marca
+          minLength: 1
+          maxLength: 100
+          example: Corea del Sur
+
+    Model:
+      type: object
+      required:
+        - id
+        - name
+        - year
+        - brandId
+      properties:
+        id:
+          type: integer
+          description: Identificador único del modelo
+          example: 1
+        name:
+          type: string
+          description: Nombre del modelo
+          minLength: 1
+          maxLength: 100
+          example: Galaxy S23
+        year:
+          type: integer
+          description: Año de lanzamiento del modelo
+          minimum: 2000
+          maximum: 2100
+          example: 2023
+        brandId:
+          type: integer
+          description: ID de la marca a la que pertenece el modelo (clave foránea)
+          example: 1
+
+    ModelInput:
+      type: object
+      required:
+        - name
+        - year
+        - brandId
+      properties:
+        name:
+          type: string
+          description: Nombre del modelo
+          minLength: 1
+          maxLength: 100
+          example: Galaxy S23
+        year:
+          type: integer
+          description: Año de lanzamiento del modelo
+          minimum: 2000
+          maximum: 2100
+          example: 2023
+        brandId:
+          type: integer
+          description: ID de la marca a la que pertenece el modelo (clave foránea)
+          example: 1
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Mensaje descriptivo del error
+          example: Ha ocurrido un error en el servidor
+        code:
+          type: string
+          description: Código de error interno (opcional)
+          example: ERR_INTERNAL_500

@@ -1,0 +1,60 @@
+meta {
+  name: Get Models By Brand
+  type: http
+  seq: 11
+}
+
+get {
+  url: http://localhost:3000/brands/1/models
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener todos los modelos de una marca
+  
+  Este endpoint retorna todos los modelos de celulares asociados a una marca específica.
+  **Demuestra la relación 1 a Muchos entre Brand y Model.**
+  
+  ## Parámetros:
+  - **id** (path): ID de la marca cuyos modelos se desean consultar
+  
+  ## Respuesta esperada:
+  - Status: 200 OK
+  - Body: Array de objetos Model que pertenecen a la marca
+  
+  ## Ejemplo de respuesta:
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Galaxy S23",
+      "year": 2023,
+      "brandId": 1
+    },
+    {
+      "id": 2,
+      "name": "Galaxy A54",
+      "year": 2023,
+      "brandId": 1
+    },
+    {
+      "id": 3,
+      "name": "Galaxy Z Fold 5",
+      "year": 2023,
+      "brandId": 1
+    }
+  ]
+  ```
+  
+  ## Posibles errores:
+  - 404 Not Found: Si la marca no existe
+  
+  ## Casos especiales:
+  - Si la marca existe pero no tiene modelos, retorna un array vacío: []
+  
+  ## Uso típico:
+  1. Primero usa GET /brands para ver todas las marcas
+  2. Selecciona el ID de una marca
+  3. Usa este endpoint para ver todos sus modelos
+}
