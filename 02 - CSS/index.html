@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: Formas de Cargar CSS en HTML</title>
+    
+    <!-- 1. CSS EXTERNO - Archivo separado (recomendado) -->
+    <link rel="stylesheet" href="styles/external.css">
+    
+    <!-- 2. CSS EXTERNO desde CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- 3. CSS INTERNO - Dentro del <head> -->
+    <style>
+        .internal-style {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196f3;
+            margin: 10px 0;
+        }
+        
+        .navigation {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .navigation a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-code"></i> Guía Completa: Formas de Cargar CSS</h1>
+        <p class="subtitle">Aprende todas las maneras de aplicar estilos en HTML</p>
+    </header>
+
+    <nav class="navigation">
+        <a href="#external">CSS Externo</a>
+        <a href="#internal">CSS Interno</a>
+        <a href="#inline">CSS Inline</a>
+        <a href="#import">@import</a>
+        <a href="#dynamic">Carga Dinámica</a>
+        <a href="#comparison">Comparación</a>
+        <a href="demo.html" style="background-color: rgba(255, 255, 255, 0.3); font-weight: 600;">🔬 Laboratorio</a>
+    </nav>
+
+    <main class="container">
+        <!-- SECCIÓN 1: CSS EXTERNO -->
+        <section id="external" class="method-section">
+            <h2>1. CSS Externo (Archivo Separado)</h2>
+            <div class="explanation">
+                <h3>¿Qué es?</h3>
+                <p>El CSS externo se almacena en un archivo separado con extensión <code>.css</code> y se enlaza usando la etiqueta <code>&lt;link&gt;</code>.</p>
+                
+                <h3>Sintaxis:</h3>
+                <div class="code-block">
+                    <pre><code>&lt;link rel="stylesheet" href="ruta/archivo.css"&gt;</code></pre>
+                </div>
+                
+                <h3>Ventajas:</h3>
+                <ul class="advantages">
+                    <li>✅ Reutilizable en múltiples páginas</li>
+                    <li>✅ Mantiene el HTML limpio y semántico</li>
+                    <li>✅ Cacheable por el navegador</li>
+                    <li>✅ Fácil mantenimiento</li>
+                    <li>✅ Permite trabajo en equipo</li>
+                </ul>
+                
+                <h3>Desventajas:</h3>
+                <ul class="disadvantages">
+                    <li>❌ Requiere petición HTTP adicional</li>
+                    <li>❌ Puede causar flash de contenido sin estilo (FOUC)</li>
+                </ul>
+            </div>
+            
+            <div class="example external-example">
+                <h4>Ejemplo en acción:</h4>
+                <p>Esta caja usa estilos del archivo <code>external.css</code></p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: CSS INTERNO -->
+        <section id="internal" class="method-section">
+            <h2>2. CSS Interno (Etiqueta &lt;style&gt;)</h2>
+            <div class="explanation">
+                <h3>¿Qué es?</h3>
+                <p>El CSS interno se define dentro de la etiqueta <code>&lt;style&gt;</code> en el <code>&lt;head&gt;</code> del documento HTML.</p>
+                
+                <h3>Sintaxis:</h3>
+                <div class="code-block">
+                    <pre><code>&lt;style&gt;
+    .mi-clase {
+        color: blue;
+        font-size: 16px;
+    }
+&lt;/style&gt;</code></pre>
+                </div>
+                
+                <h3>Ventajas:</h3>
+                <ul class="advantages">
+                    <li>✅ No requiere archivos externos</li>
+                    <li>✅ No hay peticiones HTTP adicionales</li>
+                    <li>✅ Útil para estilos específicos de una página</li>
+                </ul>
+                
+                <h3>Desventajas:</h3>
+                <ul class="disadvantages">
+                    <li>❌ No reutilizable</li>
+                    <li>❌ Aumenta el tamaño del HTML</li>
+                    <li>❌ Dificulta el mantenimiento</li>
+                </ul>
+            </div>
+            
+            <div class="example internal-style">
+                <h4>Ejemplo en acción:</h4>
+                <p>Esta caja usa estilos definidos en la etiqueta &lt;style&gt; del &lt;head&gt;</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: CSS INLINE -->
+        <section id="inline" class="method-section">
+            <h2>3. CSS Inline (Propiedad style)</h2>
+            <div class="explanation">
+                <h3>¿Qué es?</h3>
+                <p>El CSS inline se aplica directamente al elemento HTML usando el atributo <code>style</code>.</p>
+                
+                <h3>Sintaxis:</h3>
+                <div class="code-block">
+                    <pre><code>&lt;div style="color: red; font-weight: bold;"&gt;Texto&lt;/div&gt;</code></pre>
+                </div>
+                
+                <h3>Ventajas:</h3>
+                <ul class="advantages">
+                    <li>✅ Máxima especificidad</li>
+                    <li>✅ Aplicación inmediata</li>
+                    <li>✅ Útil para estilos únicos</li>
+                </ul>
+                
+                <h3>Desventajas:</h3>
+                <ul class="disadvantages">
+                    <li>❌ Mezcla contenido con presentación</li>
+                    <li>❌ Difícil de mantener</li>
+                    <li>❌ No reutilizable</li>
+                    <li>❌ Aumenta el tamaño del HTML</li>
+                </ul>
+            </div>
+            
+            <!-- 4. CSS INLINE - Aplicado directamente al elemento -->
+            <div class="example" style="background-color: #fff3e0; border: 2px solid #ff9800; padding: 15px; border-radius: 8px; color: #e65100;">
+                <h4>Ejemplo en acción:</h4>
+                <p style="font-weight: bold; font-style: italic;">Esta caja usa estilos aplicados directamente con el atributo <code>style</code></p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: @IMPORT -->
+        <section id="import" class="method-section">
+            <h2>4. CSS con @import</h2>
+            <div class="explanation">
+                <h3>¿Qué es?</h3>
+                <p>La regla <code>@import</code> permite importar hojas de estilo desde CSS o HTML.</p>
+                
+                <h3>Sintaxis:</h3>
+                <div class="code-block">
+                    <pre><code>&lt;style&gt;
+    @import url("archivo.css");
+    @import "https://fonts.googleapis.com/css2?family=Roboto";
+&lt;/style&gt;</code></pre>
+                </div>
+                
+                <h3>Ventajas:</h3>
+                <ul class="advantages">
+                    <li>✅ Permite importación condicional</li>
+                    <li>✅ Útil para organizar CSS modular</li>
+                    <li>✅ Puede importar desde URLs</li>
+                </ul>
+                
+                <h3>Desventajas:</h3>
+                <ul class="disadvantages">
+                    <li>❌ Bloquea la renderización</li>
+                    <li>❌ Múltiples peticiones HTTP secuenciales</li>
+                    <li>❌ Peor rendimiento que &lt;link&gt;</li>
+                </ul>
+            </div>
+            
+            <div class="example import-example">
+                <h4>Ejemplo en acción:</h4>
+                <p>Esta sección usa fuentes de Google importadas con @import</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: CARGA DINÁMICA -->
+        <section id="dynamic" class="method-section">
+            <h2>5. Carga Dinámica con JavaScript</h2>
+            <div class="explanation">
+                <h3>¿Qué es?</h3>
+                <p>Permite cargar CSS de forma dinámica usando JavaScript, útil para carga condicional o lazy loading.</p>
+                
+                <h3>Sintaxis:</h3>
+                <div class="code-block">
+                    <pre><code>// Crear elemento link
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'archivo.css';
+document.head.appendChild(link);
+
+// O modificar estilos directamente
+document.body.style.backgroundColor = 'blue';</code></pre>
+                </div>
+                
+                <h3>Ventajas:</h3>
+                <ul class="advantages">
+                    <li>✅ Carga bajo demanda</li>
+                    <li>✅ Control programático</li>
+                    <li>✅ Optimización de rendimiento</li>
+                    <li>✅ Estilos condicionales</li>
+                </ul>
+                
+                <h3>Desventajas:</h3>
+                <ul class="disadvantages">
+                    <li>❌ Requiere JavaScript habilitado</li>
+                    <li>❌ Complejidad adicional</li>
+                    <li>❌ Posible flash de contenido sin estilo</li>
+                </ul>
+            </div>
+            
+            <div class="example" id="dynamic-example">
+                <h4>Ejemplo en acción:</h4>
+                <p>Haz clic en el botón para ver carga dinámica de estilos</p>
+                <button onclick="loadDynamicStyles()" class="dynamic-btn">Cargar Estilos Dinámicos</button>
+                <div id="dynamic-content" style="margin-top: 10px; padding: 10px; border: 1px solid #ccc;">
+                    Contenido que cambiará con estilos dinámicos
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: COMPARACIÓN -->
+        <section id="comparison" class="method-section">
+            <h2>6. Comparación y Mejores Prácticas</h2>
+            
+            <div class="comparison-table">
+                <h3>Tabla Comparativa</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Método</th>
+                            <th>Reutilizable</th>
+                            <th>Rendimiento</th>
+                            <th>Mantenimiento</th>
+                            <th>Uso Recomendado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CSS Externo</td>
+                            <td>✅ Sí</td>
+                            <td>⚡ Excelente</td>
+                            <td>✅ Fácil</td>
+                            <td>🏆 Uso general</td>
+                        </tr>
+                        <tr>
+                            <td>CSS Interno</td>
+                            <td>❌ No</td>
+                            <td>⚡ Bueno</td>
+                            <td>⚠️ Medio</td>
+                            <td>📄 Página única</td>
+                        </tr>
+                        <tr>
+                            <td>CSS Inline</td>
+                            <td>❌ No</td>
+                            <td>⚠️ Regular</td>
+                            <td>❌ Difícil</td>
+                            <td>🎯 Estilos únicos</td>
+                        </tr>
+                        <tr>
+                            <td>@import</td>
+                            <td>✅ Sí</td>
+                            <td>⚠️ Regular</td>
+                            <td>✅ Fácil</td>
+                            <td>🔤 Fuentes/Módulos</td>
+                        </tr>
+                        <tr>
+                            <td>Dinámico</td>
+                            <td>✅ Sí</td>
+                            <td>⚡ Variable</td>
+                            <td>⚠️ Complejo</td>
+                            <td>🚀 Casos específicos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="best-practices">
+                <h3>🏆 Mejores Prácticas</h3>
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <h4>1. Usa CSS Externo</h4>
+                        <p>Para la mayoría de estilos. Mantiene el código organizado y permite reutilización.</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>2. CSS Interno para específicos</h4>
+                        <p>Solo para estilos únicos de una página que no se repetirán.</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>3. Inline con moderación</h4>
+                        <p>Úsalo solo para estilos dinámicos o sobrescribir temporalmente.</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>4. @import para fuentes</h4>
+                        <p>Ideal para Google Fonts u otras librerías de terceros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <i class="fas fa-graduation-cap"></i> 
+            Proyecto educativo sobre métodos de carga de CSS
+        </p>
+        <p>Creado con fines didácticos - 2025</p>
+    </footer>
+
+    <!-- JavaScript para carga dinámica -->
+    <script>
+        function loadDynamicStyles() {
+            const content = document.getElementById('dynamic-content');
+            
+            // Método 1: Modificar estilos directamente
+            content.style.backgroundColor = '#4caf50';
+            content.style.color = 'white';
+            content.style.padding = '20px';
+            content.style.borderRadius = '8px';
+            content.style.transform = 'scale(1.05)';
+            content.style.transition = 'all 0.3s ease';
+            content.style.boxShadow = '0 4px 8px rgba(76, 175, 80, 0.3)';
+            
+            // Cambiar contenido
+            content.innerHTML = `
+                <strong>¡Estilos cargados dinámicamente!</strong><br>
+                <small>Los estilos se aplicaron usando JavaScript</small>
+            `;
+            
+            // Método 2: Crear y agregar CSS dinámicamente
+            const style = document.createElement('style');
+            style.textContent = `
+                .dynamic-btn:hover {
+                    background-color: #45a049 !important;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Deshabilitar botón
+            event.target.disabled = true;
+            event.target.textContent = '✅ Estilos Cargados';
+        }
+
+        // Demostración de carga de CSS externo dinámico
+        function loadExternalCSS() {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'styles/dynamic.css';
+            document.head.appendChild(link);
+        }
+
+        // Efecto de scroll suave para navegación
+        document.querySelectorAll('.navigation a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Resaltar sección activa al hacer scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.method-section');
+            const navLinks = document.querySelectorAll('.navigation a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

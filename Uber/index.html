@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber - Ve a cualquier lugar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1>Uber</h1>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="#viaje">Viaje</a></li>
+                    <li><a href="#earn">Earn</a></li>
+                    <li><a href="#negocio">Negocio</a></li>
+                    <li><a href="#ubereats">Uber Eats</a></li>
+                    <li><a href="#acerca">Acerca de</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="btn-secondary lang-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1Zm8 11c0 .7-.1 1.4-.3 2-.6-1.5-1.6-3.1-3-4.7l1.8-1.8c1 1.3 1.5 2.8 1.5 4.5ZM6.5 6.5c1.3 0 3.6.8 6 2.9l-3.2 3.2C7.1 9.8 6.5 7.5 6.5 6.5Zm8.1 5c2.3 2.7 2.9 5 2.9 6-1.3 0-3.6-.8-6-2.9l3.1-3.1Zm1.9-6.1-1.9 1.9c-1.6-1.4-3.2-2.4-4.7-3 .7-.2 1.3-.3 2-.3 1.8 0 3.3.5 4.6 1.4ZM4 12c0-.7.1-1.4.3-2 .6 1.5 1.6 3.1 3 4.7l-1.8 1.8C4.5 15.2 4 13.7 4 12Zm3.5 6.6 1.9-1.9c1.6 1.4 3.2 2.4 4.7 3-.7.2-1.3.3-2 .3-1.8 0-3.3-.5-4.6-1.4Z" fill="currentColor"></path>
+                        </svg>
+                        ES
+                    </button>
+                    <button class="btn-secondary">Ayuda</button>
+                    <button class="btn-secondary">Inicia sesión</button>
+                    <button class="btn-primary">Regístrate</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right: 8px;">
+                            <path d="M18.7 3.8C15 .1 9 .1 5.3 3.8c-3.7 3.7-3.7 9.8 0 13.5L12 24l6.7-6.8c3.7-3.6 3.7-9.7 0-13.4ZM12 12.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Z" fill="#000000"></path>
+                        </svg>
+                        Quito, EC <a href="#">Cambiar ciudad</a>
+                    </p>
+                    <h2 class="hero-title">Ve a cualquier lugar con la app de Uber</h2>
+                    
+                    <div class="ride-form">
+                        <div class="form-header">
+                            <button class="btn-schedule-gray">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" fill="black"/>
+                                    <path d="M12 7V12L15 14" stroke="#EEEEEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Pedir para llevar ahora</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" class="arrow-down-icon">
+                                    <path d="M4 8L12 16L20 8" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="form-inputs">
+                            <div class="input-group">
+                                <span class="input-icon"></span>
+                                <input type="text" placeholder="Lugar de recogida" class="input-pickup">
+                                <svg class="nav-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 3L3 10.53V11.5L9.84 14.16L12.5 21H13.46L21 3Z" fill="black"/>
+                                </svg>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-icon"></span>
+                                <input type="text" placeholder="Lugar de destino">
+                            </div>
+                        </div>
+                        
+                        <button class="btn-request">Ver tarifas</button>
+                    </div>
+                    
+                    <p class="signin-prompt">Inicia sesión para ver tu actividad reciente</p>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://cn-geo1.uber.com/image-proc/crop/resizecrop/udam/format=auto/width=1344/height=1344/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy9jZTczNjUzMy1iMWE0LTQ3ZjktOTk0OS0zNWEzZGUyNTkyYzk=" alt="Imagen de Uber">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sugerencias -->
+    <section class="suggestions">
+        <div class="container">
+            <h2 class="section-title">Sugerencias</h2>
+            
+            <div class="suggestions-grid">
+                <div class="suggestion-card">
+                    <div class="card-icon">🚗</div>
+                    <h3>Ride</h3>
+                    <p>Viaje a cualquier lugar con la app de Uber. Pida un viaje, súbase y listo.</p>
+                    <a href="#" class="card-link">Detalles</a>
+                </div>
+                
+                <div class="suggestion-card">
+                    <div class="card-icon">📅</div>
+                    <h3>Reserve</h3>
+                    <p>Reserve su viaje con anticipación para que pueda relajarse ese día.</p>
+                    <a href="#" class="card-link">Detalles</a>
+                </div>
+                
+                <div class="suggestion-card">
+                    <div class="card-icon">📦</div>
+                    <h3>Send</h3>
+                    <p>Uber hace que la entrega de artículos el mismo día sea más fácil.</p>
+                    <a href="#" class="card-link">Detalles</a>
+                </div>
+                
+                <div class="suggestion-card">
+                    <div class="card-icon">🍜</div>
+                    <h3>Food</h3>
+                    <p>Pida a domicilio en los restaurantes de su zona con la app de Uber Eats.</p>
+                    <a href="#" class="card-link">Detalles</a>
+                </div>
+                
+                <div class="suggestion-card">
+                    <div class="card-icon">🛒</div>
+                    <h3>Grocery</h3>
+                    <p>Reciba artículos del súper en la puerta con la app de Uber Eats.</p>
+                    <a href="#" class="card-link">Detalles</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Merchants -->
+    <section class="merchants">
+        <div class="container">
+            <div class="merchants-header">
+                <h2 class="section-title">Recibe casi cualquier cosa a domicilio</h2>
+                <a href="#" class="view-all">Ver todo →</a>
+            </div>
+            
+            <div class="merchants-scroll">
+                <div class="merchant-item">
+                    <div class="merchant-logo red">Tía</div>
+                    <p class="merchant-time">35 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo white">City Pet</div>
+                    <p class="merchant-time">10 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo brown">Pharmacys</div>
+                    <p class="merchant-time">10 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo pink">Altoque</div>
+                    <p class="merchant-time">10 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo dark-red">La Taberna</div>
+                    <p class="merchant-time">10 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo yellow">Shell Select</div>
+                    <p class="merchant-time">10 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo blue">Medicity</div>
+                    <p class="merchant-time">10 min</p>
+                </div>
+                <div class="merchant-item">
+                    <div class="merchant-logo light-yellow">Santa María</div>
+                    <p class="merchant-time">29 min</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Reserve -->
+    <section class="feature-section reserve-section">
+        <div class="container">
+            <h2 class="section-title">Planifica para después</h2>
+            
+            <div class="reserve-grid">
+                <div class="reserve-box">
+                    <h3>Reserva tu viaje fácilmente con Uber Reserve</h3>
+                    <p class="reserve-subtitle">Elige la fecha y la hora</p>
+                    
+                    <div class="reserve-inputs">
+                        <div class="input-wrapper-white">
+                            <input type="date" class="date-input">
+                        </div>
+                        <div class="input-wrapper-white">
+                            <select class="time-input">
+                                <option>Tiempo</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-reserve-next">Siguiente</button>
+                </div>
+                
+                <div class="advantages">
+                    <h4>Ventajas</h4>
+                    <ul class="advantages-list">
+                        <li>
+                            <span class="icon">📅</span>
+                            <span>Elige la hora exacta de tu recogida con hasta 90 días de anticipación.</span>
+                        </li>
+                        <li>
+                            <span class="icon">⏱️</span>
+                            <span>Tiempo de espera adicional incluido para que tu viaje esté listo.</span>
+                        </li>
+                        <li>
+                            <span class="icon">📋</span>
+                            <span>Cancela sin costo hasta 60 minutos antes.</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-link">Consulta los términos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Cuenta -->
+    <section class="account-section">
+        <div class="container">
+            <div class="account-content">
+                <div class="account-image">
+                    <img src="https://tb-static.uber.com/prod/udam-assets/850e6b6d-a29e-4960-bcab-46de99547d24.svg" alt="Ilustración de cuenta" class="account-svg">
+                </div>
+                
+                <div class="account-text">
+                    <h2>Inicia sesión para ver los detalles de tu cuenta</h2>
+                    <p>Consulta viajes anteriores, sugerencias personalizadas, recursos de ventaja y más.</p>
+                    
+                    <div class="account-actions">
+                        <button class="btn-dark">Inicia sesión en tu cuenta</button>
+                        <a href="#" class="text-link">Crear una cuenta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Earn -->
+    <section class="feature-section earn-section">
+        <div class="container">
+            <div class="feature-content reverse">
+                <div class="feature-image">
+                    <img src="https://cn-geo1.uber.com/image-proc/crop/resizecrop/udam/format=auto/width=1152/height=1152/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy85NjRkZDNkMS05NGU3LTQ4MWUtYjI4Yy0wOGQ1OTM1M2I5ZTAucG5n" alt="Conduce con la app de Uber" class="img-fluid-rounded">
+                </div>
+                
+                <div class="feature-text">
+                    <h2>Usa la app cuando quieras, genera ganancias según tus necesidades</h2>
+                    <p>Genera ganancias usando la app cuando quieras, ya sea realizando entregas, viajes o ambos. Puedes usar tu propio vehículo o elegir una renta a través de la app de Uber.</p>
+                    
+                    <div class="earn-actions">
+                        <button class="btn-dark">Comienza</button>
+                        <a href="#" class="text-link">¿Ya tienes una cuenta? Inicia sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Business -->
+    <section class="feature-section business-section">
+        <div class="container">
+            <div class="feature-content">
+                <div class="feature-text">
+                    <h2>La app de Uber que conoces, reinventada para negocios</h2>
+                    <p>Uber for Business es una plataforma para gestionar viajes y comidas a nivel global, así como entregas locales, para empresas de cualquier tamaño.</p>
+                    
+                    <div class="business-actions">
+                        <button class="btn-dark">Comienza</button>
+                        <a href="#" class="text-link">Consulta nuestras soluciones</a>
+                    </div>
+                </div>
+                
+                <div class="feature-image">
+                    <img src="https://cn-geo1.uber.com/image-proc/crop/resizecrop/udam/format=auto/width=1152/height=1152/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy83NmJhZjFlYS0zODVhLTQwOGMtODQ2Yi01OTIxMTA4NjE5NmMucG5n" alt="Uber para Negocios" class="img-fluid-rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Descarga -->
+    <section class="download-section">
+        <div class="container">
+            <h2 class="section-title">Es más fácil con las apps</h2>
+            
+            <div class="download-grid">
+                <div class="download-card">
+                    <img src="https://cn-geo1.uber.com/image-proc/crop/resizecrop/udam/format=auto/width=2304/height=2304/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy9hNTk5ODZhZC0wZDlmLTQzOTYtODUzOS0zODliY2U5N2Y1NzkucG5n" alt="QR Uber App" class="qr-img">
+                    <div class="download-info">
+                        <h3>Descarga la app de Uber</h3>
+                        <p>Escanea para descargar</p>
+                    </div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                
+                <div class="download-card">
+                    <img src="https://cn-geo1.uber.com/image-proc/crop/resizecrop/udam/format=auto/width=2304/height=2304/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy9jODQ2NmEyNy1kMzBjLTUxNGEtOTZmMi1lMDlmMThmYWY4MDYucG5n" alt="QR Driver App" class="qr-img">
+                    <div class="download-info">
+                        <h3>Descarga la app para socios de la App</h3>
+                        <p>Escanea para descargar</p>
+                    </div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Compañía</h4>
+                    <ul>
+                        <li><a href="#">Acerca de nosotros</a></li>
+                        <li><a href="#">Nuestras opciones</a></li>
+                        <li><a href="#">Sala de noticias</a></li>
+                        <li><a href="#">Inversionistas</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Oportunidades para prestar servicios con la app de Uber</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Productos</h4>
+                    <ul>
+                        <li><a href="#">Viaje</a></li>
+                        <li><a href="#">Conduce con la app de Uber</a></li>
+                        <li><a href="#">Hacer entregas</a></li>
+                        <li><a href="#">Comer</a></li>
+                        <li><a href="#">Uber para Empresas</a></li>
+                        <li><a href="#">Uber Freight</a></li>
+                        <li><a href="#">Tarjetas de regalo</a></li>
+                        <li><a href="#">Uber Health</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Ciudadanía global</h4>
+                    <ul>
+                        <li><a href="#">Seguridad</a></li>
+                        <li><a href="#">Sustentabilidad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Viajes</h4>
+                    <ul>
+                        <li><a href="#">Reserva</a></li>
+                        <li><a href="#">Aeropuertos</a></li>
+                        <li><a href="#">Ciudades</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">YouTube</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">X</a>
+                </div>
+                
+                <div class="region-selector">
+                    <button class="region-btn">🌐 Español (Internacional)</button>
+                    <button class="region-btn">📍 Quito</button>
+                </div>
+            </div>
+            
+            <div class="app-badges">
+                <a href="#" class="badge">Google Play</a>
+                <a href="#" class="badge">App Store</a>
+            </div>
+            
+            <div class="footer-legal">
+                <p>© 2025 Uber Technologies, Inc.</p>
+                <div class="legal-links">
+                    <a href="#">Privacidad</a>
+                    <a href="#">Accesibilidad</a>
+                    <a href="#">Términos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón sticky footer -->
+    <div class="sticky-footer">
+        <button class="btn-sticky">Ver tarifas</button>
+    </div>
+
+    <!-- Script para mostrar/ocultar botón sticky -->
+    <script>
+        window.addEventListener('scroll', function() {
+            var stickyFooter = document.querySelector('.sticky-footer');
+            var triggerSection = document.querySelector('.merchants');
+
+            if (stickyFooter && triggerSection) {
+                var sectionTop = triggerSection.getBoundingClientRect().top;
+                var windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight) {
+                    stickyFooter.classList.add('visible');
+                } else {
+                    stickyFooter.classList.remove('visible');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+meta {
+  name: get-all-todos
+  type: http
+  seq: 15
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/todos
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

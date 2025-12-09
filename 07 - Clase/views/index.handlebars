@@ -1,0 +1,33 @@
+<div class="hero-section">
+    <h1 class="hero-title">{{titulo}}</h1>
+    <p class="hero-subtitle">{{subtitulo}}</p>
+    <div class="year-badge">AÑO {{anio}}</div>
+</div>
+
+<section id="inventos" class="inventos-section">
+    <h2 class="section-title">Catálogo de Innovaciones</h2>
+    <p class="section-description">
+        Descubre las {{totalInventos}} tecnologías revolucionarias que definirán el futuro de la humanidad
+    </p>
+    
+    <div class="inventos-grid">
+        {{#each inventos}}
+            {{> invento-card}}
+        {{/each}}
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="stat-card">
+        <div class="stat-number">{{totalInventos}}</div>
+        <div class="stat-label">Tecnologías</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">2085</div>
+        <div class="stat-label">Año</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Posibilidades</div>
+    </div>
+</section>

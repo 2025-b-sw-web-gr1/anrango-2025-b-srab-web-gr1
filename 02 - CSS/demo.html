@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos Avanzados - Carga de CSS</title>
+    
+    <!-- Ejemplo de CSS condicional para diferentes media -->
+    <link rel="stylesheet" href="styles/external.css">
+    <link rel="stylesheet" href="styles/print.css" media="print">
+    <link rel="preload" href="styles/dynamic.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles/dynamic.css"></noscript>
+    
+    <style>
+        /* CSS interno para esta página específica */
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .loading-demo {
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px dashed #ccc;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .method-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .method-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .timer {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <header>
+            <h1>🔬 Laboratorio de Carga de CSS</h1>
+            <p>Experimenta con diferentes métodos de carga y observa los tiempos de respuesta</p>
+            <a href="index.html" class="method-button">← Volver a la Guía Principal</a>
+        </header>
+
+        <main>
+            <!-- Demostración de tiempos de carga -->
+            <section>
+                <h2>⏱️ Medición de Tiempos de Carga</h2>
+                <div class="loading-demo" id="performance-demo">
+                    <p>Tiempo de carga de la página: <span class="timer" id="load-time">Calculando...</span></p>
+                    <p>Recursos CSS cargados: <span class="timer" id="css-count">0</span></p>
+                </div>
+            </section>
+
+            <!-- Demostración de carga bajo demanda -->
+            <section>
+                <h2>📥 Carga Bajo Demanda</h2>
+                <div class="loading-demo">
+                    <p>Haz clic en los botones para cargar estilos dinámicamente:</p>
+                    <button class="method-button" onclick="loadTheme('dark')">🌙 Tema Oscuro</button>
+                    <button class="method-button" onclick="loadTheme('neon')">✨ Tema Neón</button>
+                    <button class="method-button" onclick="loadTheme('minimal')">📝 Tema Minimal</button>
+                    <button class="method-button" onclick="loadTheme('reset')">🔄 Reset</button>
+                </div>
+            </section>
+
+            <!-- Demostración de CSS condicional -->
+            <section>
+                <h2>🔀 CSS Condicional</h2>
+                <div class="loading-demo" id="conditional-demo">
+                    <p>Cambia el tamaño de la ventana o usa las herramientas de desarrollo para ver estilos responsivos.</p>
+                    <div class="responsive-demo">
+                        <div class="box mobile-only">📱 Solo visible en móvil</div>
+                        <div class="box tablet-only">📱 Solo visible en tablet</div>
+                        <div class="box desktop-only">🖥️ Solo visible en desktop</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demostración de prioridad CSS -->
+            <section>
+                <h2>🏆 Prioridad y Especificidad</h2>
+                <div class="loading-demo">
+                    <div id="priority-demo" class="priority-test" style="padding: 20px;">
+                        <p>Este elemento tiene múltiples estilos aplicados con diferentes prioridades:</p>
+                        <ul>
+                            <li>CSS Externo (especificidad baja)</li>
+                            <li>CSS Interno (especificidad media)</li>
+                            <li>CSS Inline (especificidad alta)</li>
+                        </ul>
+                        <button class="method-button" onclick="togglePriority()">Alternar !important</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demostración de fallbacks -->
+            <section>
+                <h2>🛡️ Fallbacks y Compatibilidad</h2>
+                <div class="loading-demo" id="fallback-demo">
+                    <div class="gradient-box">
+                        <p>Esta caja usa gradientes CSS modernos con fallbacks para navegadores antiguos.</p>
+                    </div>
+                    <div class="grid-box">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>🧪 Laboratorio Experimental - Prueba diferentes navegadores y dispositivos</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript para demostraciones -->
+    <script>
+        // Medición de tiempo de carga
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            document.getElementById('load-time').textContent = Math.round(loadTime) + 'ms';
+            
+            // Contar hojas de estilo
+            const cssCount = document.styleSheets.length;
+            document.getElementById('css-count').textContent = cssCount;
+        });
+
+        // Función para cargar temas dinámicamente
+        function loadTheme(theme) {
+            // Remover temas anteriores
+            const existingThemes = document.querySelectorAll('.dynamic-theme');
+            existingThemes.forEach(t => t.remove());
+
+            if (theme === 'reset') return;
+
+            // Crear nuevo tema
+            const style = document.createElement('style');
+            style.classList.add('dynamic-theme');
+            
+            let themeCSS = '';
+            
+            switch(theme) {
+                case 'dark':
+                    themeCSS = `
+                        body { background: #1a1a1a; color: #e0e0e0; transition: all 0.5s ease; }
+                        .demo-container { background: #2d2d2d; border-radius: 10px; }
+                        .loading-demo { background: #3a3a3a; border-color: #555; }
+                        .method-button { background: #4a4a4a; }
+                        .method-button:hover { background: #5a5a5a; }
+                    `;
+                    break;
+                case 'neon':
+                    themeCSS = `
+                        body { 
+                            background: #000; 
+                            color: #00ff00; 
+                            text-shadow: 0 0 10px #00ff00;
+                            transition: all 0.5s ease;
+                        }
+                        .loading-demo { 
+                            border-color: #00ff00; 
+                            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+                            background: rgba(0, 255, 0, 0.1);
+                        }
+                        .method-button { 
+                            background: transparent; 
+                            border: 2px solid #00ff00;
+                            color: #00ff00;
+                            text-shadow: 0 0 10px #00ff00;
+                        }
+                        h1, h2 { 
+                            color: #ff00ff;
+                            text-shadow: 0 0 15px #ff00ff;
+                        }
+                    `;
+                    break;
+                case 'minimal':
+                    themeCSS = `
+                        body { 
+                            background: #fafafa; 
+                            color: #333;
+                            font-family: 'Georgia', serif;
+                            transition: all 0.5s ease;
+                        }
+                        .loading-demo { 
+                            border: 1px solid #ddd; 
+                            background: white;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        }
+                        .method-button { 
+                            background: white; 
+                            color: #333;
+                            border: 1px solid #ddd;
+                        }
+                        h1, h2 { color: #666; font-weight: normal; }
+                    `;
+                    break;
+            }
+            
+            style.textContent = themeCSS;
+            document.head.appendChild(style);
+        }
+
+        // Función para alternar !important
+        let importantToggle = false;
+        function togglePriority() {
+            const element = document.getElementById('priority-demo');
+            
+            if (!importantToggle) {
+                element.style.cssText += 'background: red !important; color: white !important; border: 3px solid yellow !important;';
+                importantToggle = true;
+                event.target.textContent = 'Quitar !important';
+            } else {
+                element.style.cssText = element.style.cssText.replace(/!important/g, '');
+                importantToggle = false;
+                event.target.textContent = 'Alternar !important';
+            }
+        }
+
+        // Detección de características del navegador
+        function detectFeatures() {
+            const features = {
+                grid: CSS.supports('display', 'grid'),
+                flexbox: CSS.supports('display', 'flex'),
+                customProperties: CSS.supports('--custom', 'value'),
+                gradients: CSS.supports('background', 'linear-gradient(red, blue)')
+            };
+
+            console.log('Características CSS soportadas:', features);
+            return features;
+        }
+
+        // Carga progresiva de estilos
+        function progressiveLoad() {
+            const criticalCSS = `
+                .priority-test { background: lightblue; }
+                .responsive-demo { display: flex; gap: 10px; }
+                .box { padding: 10px; background: #f0f0f0; border-radius: 5px; flex: 1; text-align: center; }
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = criticalCSS;
+            document.head.appendChild(style);
+        }
+
+        // Cargar estilos críticos inmediatamente
+        progressiveLoad();
+        detectFeatures();
+
+        // Simular carga lenta de recursos no críticos
+        setTimeout(() => {
+            const nonCriticalCSS = `
+                @media (max-width: 768px) {
+                    .desktop-only { display: none; }
+                    .mobile-only { display: block; }
+                    .tablet-only { display: none; }
+                }
+                @media (min-width: 769px) and (max-width: 1024px) {
+                    .desktop-only { display: none; }
+                    .mobile-only { display: none; }
+                    .tablet-only { display: block; }
+                }
+                @media (min-width: 1025px) {
+                    .desktop-only { display: block; }
+                    .mobile-only { display: none; }
+                    .tablet-only { display: none; }
+                }
+                .gradient-box {
+                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    background: -webkit-linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    background: -moz-linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    background: #ff6b6b; /* Fallback */
+                    padding: 20px;
+                    margin: 10px 0;
+                    border-radius: 8px;
+                    color: white;
+                }
+                .grid-box {
+                    display: grid;
+                    display: -ms-grid; /* IE10+ */
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                    gap: 10px;
+                    margin: 20px 0;
+                }
+                .grid-item {
+                    background: #3498db;
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                    border-radius: 5px;
+                    font-weight: bold;
+                }
+                /* Fallback para navegadores sin grid */
+                @supports not (display: grid) {
+                    .grid-box {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+                    .grid-item {
+                        flex: 1 1 100px;
+                        margin: 5px;
+                    }
+                }
+            `;
+            
+            const advancedStyle = document.createElement('style');
+            advancedStyle.textContent = nonCriticalCSS;
+            document.head.appendChild(advancedStyle);
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+/* =============================================
+   CSS DINÁMICO - dynamic.css
+   Estilos que se cargan dinámicamente con JS
+   ============================================= */
+
+/* Animaciones especiales para contenido dinámico */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Estilos que se aplicarán dinámicamente */
+.dynamically-loaded {
+    animation: bounceIn 0.6s ease-out;
+    background: linear-gradient(45deg, #e74c3c, #f39c12);
+    color: white !important;
+    border-radius: 15px !important;
+    padding: 25px !important;
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3) !important;
+    transform: scale(1.02) !important;
+    border: 3px solid #fff !important;
+}
+
+.dynamic-glow {
+    animation: pulseGlow 2s infinite;
+}
+
+.slide-in {
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+/* Efectos hover especiales para elementos dinámicos */
+.dynamic-hover-effect:hover {
+    transform: rotate(5deg) scale(1.1) !important;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    box-shadow: 0 15px 35px rgba(118, 75, 162, 0.4) !important;
+}
+
+/* Estilos para notificaciones dinámicas */
+.dynamic-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    animation: slideInFromRight 0.5s ease-out;
+    z-index: 1000;
+    font-weight: 500;
+}
+
+.dynamic-notification::before {
+    content: "✨";
+    margin-right: 8px;
+}
+
+/* Tema oscuro dinámico */
+.dark-theme-dynamic {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+    transition: all 0.5s ease !important;
+}
+
+.dark-theme-dynamic .method-section {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-left-color: #4CAF50 !important;
+}
+
+/* Efectos de partículas CSS */
+.particle-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, #ff6b6b 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, #4ecdc4 1px, transparent 1px),
+        radial-gradient(circle at 50% 10%, #45b7d1 1px, transparent 1px),
+        radial-gradient(circle at 90% 40%, #f9ca24 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px, 40px 40px, 35px 35px;
+    animation: particleFloat 10s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-20px) rotate(360deg);
+    }
+}
+
+/* Gradiente animado de fondo */
+.animated-gradient {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Efecto de typing/escritura */
+.typing-effect {
+    overflow: hidden;
+    border-right: 2px solid #4CAF50;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #4CAF50 }
+}
+
+/* Efecto de cristal/glass morphism */
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+}
+
+/* Efecto neón */
+.neon-glow {
+    text-shadow: 
+        0 0 5px #4CAF50,
+        0 0 10px #4CAF50,
+        0 0 20px #4CAF50,
+        0 0 40px #4CAF50 !important;
+    color: #4CAF50 !important;
+    animation: neonFlicker 2s infinite alternate;
+}
+
+@keyframes neonFlicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 
+            0 0 5px #4CAF50,
+            0 0 10px #4CAF50,
+            0 0 20px #4CAF50,
+            0 0 40px #4CAF50;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+/* Responsividad para elementos dinámicos */
+@media (max-width: 768px) {
+    .dynamic-notification {
+        right: 10px;
+        left: 10px;
+        text-align: center;
+    }
+    
+    .dynamically-loaded {
+        padding: 15px !important;
+        border-radius: 10px !important;
+    }
+}

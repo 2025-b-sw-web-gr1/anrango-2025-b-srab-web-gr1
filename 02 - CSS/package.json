@@ -1,0 +1,34 @@
+{
+  "name": "css-loading-methods-tutorial",
+  "version": "1.0.0",
+  "description": "Proyecto educativo que demuestra todas las formas de cargar CSS en HTML",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server . -p 3000 -o",
+    "dev": "http-server . -p 3000 -o -c-1",
+    "server": "http-server . -p 8080 -o"
+  },
+  "keywords": [
+    "css",
+    "html",
+    "educativo",
+    "tutorial",
+    "estilos",
+    "web",
+    "frontend"
+  ],
+  "author": "Proyecto Educativo",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/css-loading-methods"
+  },
+  "homepage": "http://localhost:3000",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
