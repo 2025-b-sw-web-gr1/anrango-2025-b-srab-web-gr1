@@ -1,0 +1,106 @@
+# ===========================================
+# GITIGNORE UNIFICADO PARA TODO EL WORKSPACE
+# ===========================================
+
+# ============= ARCHIVOS DEL SISTEMA =============
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+*.cache
+
+# ============= EDITORES E IDEs =============
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.user
+*.njsproj
+*.sln
+*.sw?
+
+# ============= NODE.JS / JAVASCRIPT =============
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+*.local
+
+# Logs de Node.js
+logs/
+
+# ============= .NET / C# =============
+bin/
+obj/
+Debug/
+Release/
+*.csproj.user
+.vs/
+
+# ============= PYTHON =============
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# ============= JAVA =============
+*.class
+*.jar
+*.war
+*.ear
+target/
+.gradle/
+build/
+
+# ============= ARCHIVOS SENSIBLES =============
+.env
+.env.local
+.env.production
+.env.test
+*.key
+*.pem
+config/secrets.json
+
+# ============= BASES DE DATOS =============
+*.db
+*.sqlite
+*.sqlite3
+
+# ============= ARCHIVOS TEMPORALES =============
+*.swp
+*.swo
+*~
+.tmp/
+temp/
+
+# ============= COVERAGE Y TESTING =============
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# ============= ESPECÍFICOS DEL PROYECTO =============
+# Archivos de desarrollo local
+local-config.json
+test-data/
+sandbox/
+
+# Builds específicos
+public/uploads/
+public/temp/
