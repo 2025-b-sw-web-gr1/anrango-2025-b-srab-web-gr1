@@ -1,0 +1,28 @@
+meta {
+  name: Crear [Ingrediente]
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:3000/ingredientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"Cebolla",
+    "cantidad":"200 gr",
+    "receta":"2"
+  }
+}
+
+vars:pre-request {
+  nombre: Receta 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
