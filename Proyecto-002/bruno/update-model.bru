@@ -1,0 +1,48 @@
+meta {
+  name: Update Model
+  type: http
+  seq: 10
+}
+
+put {
+  url: http://localhost:3000/models/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Galaxy S24 Ultra",
+    "year": 2024
+  }
+}
+
+docs {
+  # Actualizar un modelo
+  
+  Este endpoint permite actualizar un modelo existente.
+  
+  ## Parámetros:
+  - **id**: ID del modelo (number)
+  
+  ## Campos actualizables:
+  - **name**: Nombre del modelo (string)
+  - **year**: Año de lanzamiento (number)
+  - **brand**: Objeto con el ID de la marca (opcional)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 200,
+    "data": {
+      "id": 1,
+      "name": "Galaxy S24 Ultra",
+      "year": 2024
+    }
+  }
+  ```
+}

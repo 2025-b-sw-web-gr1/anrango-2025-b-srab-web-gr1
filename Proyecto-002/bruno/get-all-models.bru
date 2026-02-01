@@ -1,0 +1,36 @@
+meta {
+  name: Get All Models
+  type: http
+  seq: 8
+}
+
+get {
+  url: http://localhost:3000/models
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener todos los modelos
+  
+  Este endpoint devuelve todos los modelos registrados con su marca.
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 200,
+    "data": [
+      {
+        "id": 1,
+        "name": "Galaxy S24",
+        "year": 2024,
+        "brand": {
+          "id": 1,
+          "name": "Samsung",
+          "country": "Corea del Sur"
+        }
+      }
+    ]
+  }
+  ```
+}

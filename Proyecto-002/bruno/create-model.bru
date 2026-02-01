@@ -1,0 +1,53 @@
+meta {
+  name: Create Model
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3000/models
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Galaxy S24",
+    "year": 2024,
+    "brand": {
+      "id": 1
+    }
+  }
+}
+
+docs {
+  # Crear un nuevo modelo
+  
+  Este endpoint permite crear un nuevo modelo de celular.
+  
+  ## Campos requeridos:
+  - **name**: Nombre del modelo (string)
+  - **year**: Año de lanzamiento (number)
+  - **brand**: Objeto con el ID de la marca a la que pertenece
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 201,
+    "data": {
+      "id": 1,
+      "name": "Galaxy S24",
+      "year": 2024,
+      "brand": {
+        "id": 1,
+        "name": "Samsung",
+        "country": "Corea del Sur"
+      }
+    }
+  }
+  ```
+}

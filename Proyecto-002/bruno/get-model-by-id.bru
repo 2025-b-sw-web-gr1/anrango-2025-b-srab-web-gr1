@@ -1,0 +1,37 @@
+meta {
+  name: Get Model by ID
+  type: http
+  seq: 9
+}
+
+get {
+  url: http://localhost:3000/models/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener un modelo por ID
+  
+  Este endpoint devuelve un modelo específico con su marca.
+  
+  ## Parámetros:
+  - **id**: ID del modelo (number)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 200,
+    "data": {
+      "id": 1,
+      "name": "Galaxy S24",
+      "year": 2024,
+      "brand": {
+        "id": 1,
+        "name": "Samsung",
+        "country": "Corea del Sur"
+      }
+    }
+  }
+  ```
+}

@@ -1,0 +1,33 @@
+meta {
+  name: Get Brand by ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/brands/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Obtener una marca por ID
+  
+  Este endpoint devuelve una marca específica con sus modelos.
+  
+  ## Parámetros:
+  - **id**: ID de la marca (number)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 200,
+    "data": {
+      "id": 1,
+      "name": "Samsung",
+      "country": "Corea del Sur",
+      "models": [...]
+    }
+  }
+  ```
+}

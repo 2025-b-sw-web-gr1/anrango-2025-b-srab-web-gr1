@@ -1,0 +1,27 @@
+meta {
+  name: Delete Brand
+  type: http
+  seq: 5
+}
+
+delete {
+  url: http://localhost:3000/brands/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Eliminar una marca
+  
+  Este endpoint permite eliminar una marca.
+  
+  ## Parámetros:
+  - **id**: ID de la marca (number)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 204
+  }
+  ```
+}
