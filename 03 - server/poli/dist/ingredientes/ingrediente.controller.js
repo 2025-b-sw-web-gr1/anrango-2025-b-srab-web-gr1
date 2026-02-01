@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.IngredientesController = void 0;
 const common_1 = require("@nestjs/common");
 const ingrediente_service_1 = require("./ingrediente.service");
+const auth_admin_guard_1 = require("../guards/auth-admin.guard");
 let IngredientesController = class IngredientesController {
     ingredientesService;
     constructor(ingredientesService) {
@@ -65,6 +66,7 @@ let IngredientesController = class IngredientesController {
 exports.IngredientesController = IngredientesController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseGuards)(auth_admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -72,6 +74,7 @@ __decorate([
 ], IngredientesController.prototype, "crear", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, common_1.UseGuards)(auth_admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -80,6 +83,7 @@ __decorate([
 ], IngredientesController.prototype, "actualizar", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)(auth_admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -87,6 +91,7 @@ __decorate([
 ], IngredientesController.prototype, "eliminar", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)(auth_admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -94,6 +99,7 @@ __decorate([
 ], IngredientesController.prototype, "obtenerUno", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.UseGuards)(auth_admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

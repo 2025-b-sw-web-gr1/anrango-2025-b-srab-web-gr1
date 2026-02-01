@@ -15,6 +15,7 @@ const receta_entity_1 = require("./recetas/receta.entity");
 const ingrediente_entity_1 = require("./ingredientes/ingrediente.entity");
 const recetas_module_1 = require("./recetas/recetas.module");
 const ingredientes_module_1 = require("./ingredientes/ingredientes.module");
+const auth_controller_1 = require("./auth.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,7 +31,7 @@ exports.AppModule = AppModule = __decorate([
             recetas_module_1.RecetasModule,
             ingredientes_module_1.IngredientesModule,
         ],
-        controllers: [app_controller_1.AppController],
+        controllers: [app_controller_1.AppController, auth_controller_1.AuthController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

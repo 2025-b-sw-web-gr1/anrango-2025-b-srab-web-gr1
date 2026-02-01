@@ -6,6 +6,7 @@ import { Receta } from './recetas/receta.entity';
 import { Ingrediente } from './ingredientes/ingrediente.entity';
 import { RecetasModule } from './recetas/recetas.module';
 import { IngredientesModule } from './ingredientes/ingredientes.module';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [ // dentro de imports van los módulos que use nuestra aplicación
@@ -18,7 +19,7 @@ import { IngredientesModule } from './ingredientes/ingredientes.module';
     RecetasModule, 
     IngredientesModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [AppService],
 })
 export class AppModule {}
