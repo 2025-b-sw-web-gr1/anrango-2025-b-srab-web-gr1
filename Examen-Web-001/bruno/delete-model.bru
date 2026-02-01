@@ -1,0 +1,27 @@
+meta {
+  name: Delete Model
+  type: http
+  seq: 11
+}
+
+delete {
+  url: http://localhost:3000/models/1
+  body: none
+  auth: none
+}
+
+docs {
+  # Eliminar un modelo
+  
+  Este endpoint permite eliminar un modelo.
+  
+  ## Parámetros:
+  - **id**: ID del modelo (number)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 204
+  }
+  ```
+}

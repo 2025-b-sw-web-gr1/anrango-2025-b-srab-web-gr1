@@ -1,0 +1,47 @@
+meta {
+  name: Update Brand
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:3000/brands/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Samsung Electronics",
+    "country": "Corea del Sur"
+  }
+}
+
+docs {
+  # Actualizar una marca
+  
+  Este endpoint permite actualizar una marca existente.
+  
+  ## Parámetros:
+  - **id**: ID de la marca (number)
+  
+  ## Campos actualizables:
+  - **name**: Nombre de la marca (string)
+  - **country**: País de origen (string)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 200,
+    "data": {
+      "id": 1,
+      "name": "Samsung Electronics",
+      "country": "Corea del Sur"
+    }
+  }
+  ```
+}

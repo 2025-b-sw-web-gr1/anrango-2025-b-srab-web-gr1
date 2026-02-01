@@ -1,0 +1,45 @@
+meta {
+  name: Create Brand
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/brands
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Samsung",
+    "country": "Corea del Sur"
+  }
+}
+
+docs {
+  # Crear una nueva marca
+  
+  Este endpoint permite crear una nueva marca de celulares.
+  
+  ## Campos requeridos:
+  - **name**: Nombre de la marca (string)
+  - **country**: País de origen (string)
+  
+  ## Ejemplo de respuesta exitosa:
+  ```json
+  {
+    "statusCode": 201,
+    "data": {
+      "id": 1,
+      "name": "Samsung",
+      "country": "Corea del Sur",
+      "models": []
+    }
+  }
+  ```
+}
