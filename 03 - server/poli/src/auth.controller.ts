@@ -1,22 +1,33 @@
-import { Controller, Post, Req, Res } from '@nestjs/common';
+import { Controller, Post, Req, Res, Body } from '@nestjs/common';
 import type { Request, Response } from 'express';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { LoginDto } from './dto/login.dto';
+import { LoginResponseDto } from './dto/login-response.dto';
+import { LogoutResponseDto } from './dto/logout-response.dto';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   @Post('login')
-  login(@Req() req: Request, @Res() res: Response) {
-    const { username, password } = req.body;
+  @ApiBody({ type: LoginDto })
+  @ApiResponse({ status: 200, description: 'Login exitoso', type: LoginResponseDto })
+  @ApiResponse({ status: 400, description: 'Ya existe una sesión activa' })
+  @ApiResponse({ status: 401, description: 'Credenciales inválidas' })
+  login(
+    @Body() body: LoginDto, 
+    @Req() req: Request, 
+    @Res() res: Response
+) {
+    const { username, password } = body;
 
-    // Verificamos si ya existe sesión activa
     if (req.session.user) {
       return res.status(400).json({
         message: 'Ya existe una sesión activa, deslogee primero.',
       });
     }
 
-    // Credenciales quemadas
     if (username === 'admin' && password === '12345678') {
-      req.session.user = 'admin'; // Guardamos solo el usuario
+      req.session.user = 'admin';
       return res.json({ message: 'Login exitoso', user: req.session.user });
     } else {
       return res.status(401).json({ message: 'Credenciales inválidas' });
@@ -24,6 +35,8 @@ export class AuthController {
   }
 
   @Post('logout')
+  @ApiResponse({ status: 200, description: 'Sesión cerrada correctamente', type: LogoutResponseDto })
+  @ApiResponse({ status: 400, description: 'No hay sesión activa' })
   logout(@Req() req: Request, @Res() res: Response) {
     if (req.session.user) {
       req.session.destroy((err) => {
